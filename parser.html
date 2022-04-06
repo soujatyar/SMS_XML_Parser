@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id='content'>
+        <table id='sms' cellpadding='10px' style="text-align:left;">
+            <thead>
+                <tr>
+                    <th>Contact Name</th>
+                    <th>Phone Number</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                </tr>                
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let xmlContent = '';
+        let tableSms = document.getElementById('sms');
+        fetch('sample.xml').then((response)=> {
+            response.text().then((xml)=>{
+                xmlContent = xml;
+
+                let parser = new DOMParser();
+                let xmlDOM = parser.parseFromString(xmlContent, 'application/xml');
+                let sms_count = xmlDOM.querySelectorAll('sms');
+
+                sms_count.forEach(smsXmlNode => {
+
+                    let row = document.createElement('tr');
+
+                    //contact
+                    let td = document.createElement('td');
+                    td.innerText = smsXmlNode.getAttribute('contact_name');
+                    row.appendChild(td);
+
+                    //  number
+                    td = document.createElement('td');
+                    td.innerText = smsXmlNode.getAttribute('address');
+                    row.appendChild(td);
+                    
+                    //message
+                    td = document.createElement('td');
+                    td.innerText = smsXmlNode.getAttribute('body');
+                    row.appendChild(td);
+
+                    //date
+                    td = document.createElement('td');
+                    td.innerText = smsXmlNode.getAttribute('readable_date');
+                    row.appendChild(td);
+
+                    tableSms.children[1].appendChild(row);
+                    
+                });
+                
+            });
+        });    
+    </script>
+</body>
+</html>
