@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <link rel="stylesheet" type="text/css" href="css/boxes.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title> Homepage </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <!--fontawsome-->
         <script src="https://kit.fontawesome.com/fdc4c16ba6.js" crossorigin="anonymous"></script>
-        <!-- <link rel="stylesheet" type="css" href="css/style.css"> -->
         <!-- <script src="js/animation,js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- <meta charset="utf-8">
@@ -20,136 +19,12 @@
         <link href="table-responsive.css" media="screen" type="text/css" rel="stylesheet" /> -->
     </head>
 <body>
-    <!-- <div id="gradient" /> -->
     <div class="container-fluid">
-        <div id='content'>
-            <!-- <table id='sms' cellpadding='10px' style="text-align:left;" class="container">
-                <thead >
-                    <tr>
-                    <th>Contact Name</th>
-                    <th>Phone Number</th>
-                    <th>Message</th>
-                    <th>Date</th>
-                </tr>                
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table> -->
-        
-        </div>
         <div id="messages" class="container">
             
         </div>
     </div>
-    <style>
-        
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
-
-.container {
-    width: 400px;
-    padding: 10px;
-}
-
-.message-blue {
-    position: relative;
-    margin-left: 20px;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #A8DDFD;
-    width: 200px;
-    height: 50px;
-    text-align: left;
-    font: 400 .9em 'Open Sans', sans-serif;
-    border: 1px solid #97C6E3;
-    border-radius: 10px;
-}
-
-.message-orange {
-    position: relative;
-    margin-bottom: 10px;
-    margin-left: calc(100% - 240px);
-    padding: 10px;
-    background-color: #f8e896;
-    width: 500px;
-    height: 100%;
-    text-align: left;
-    font: 400 .9em 'Open Sans', sans-serif;
-    border: 1px solid #dfd087;
-    border-radius: 10px;
-}
-
-.message-content {
-    padding: 10px;
-    margin: 0;
-}
-
-.message-timestamp-right {
-    position: absolute;
-    font-size: .85em;
-    font-weight: 300;
-    bottom: 5px;
-    right: 5px;
-}
-
-.message-timestamp-left {
-    position: absolute;
-    font-size: .85em;
-    font-weight: 300;
-    bottom: 5px;
-    left: 5px;
-}
-
-.message-blue:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 15px solid #A8DDFD;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    top: 0;
-    left: -15px;
-}
-
-.message-blue:before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 17px solid #97C6E3;
-    border-left: 16px solid transparent;
-    border-right: 16px solid transparent;
-    top: -1px;
-    left: -17px;
-}
-
-.message-orange:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-bottom: 15px solid #f8e896;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    bottom: 0;
-    right: -15px;
-}
-
-.message-orange:before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-bottom: 17px solid #dfd087;
-    border-left: 16px solid transparent;
-    border-right: 16px solid transparent;
-    bottom: -1px;
-    right: -17px;
-}
-
-    </style>
+    
     <script>
         let xmlContent = '';
         // let tableSms = document.getElementById('sms');
@@ -184,10 +59,11 @@
                     // td = document.createElement('td');
                     let dateTime = smsXmlNode.getAttribute('readable_date');
                     // row.appendChild(td);
-
+                    let type= smsXmlNode.getAttribute('type');
+                    console.log(type);
                     // tableSms.children[1].appendChild(row);
                     temp = document.createElement('div');
-                    let eachMessage = "<div class='message-orange'><p class='message-content'>"+body+"</p><div class='message-timestamp-right'>"+dateTime+"</div> </div>";
+                    let eachMessage = type=='2'? "<div class='message-orange'><p class='message-content'>"+body+"</p><div class='message-timestamp-right'>"+dateTime+"</div> </div>" : type=='1'? "<div class='message-blue'><p class='message-content'>"+body+"</p><div class='message-timestamp-left'>"+dateTime+"</div> </div>": "";
                     temp.innerHTML = eachMessage;
                     document.getElementById('messages').appendChild(temp);
 
