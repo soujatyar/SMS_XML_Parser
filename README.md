@@ -1,3 +1,5 @@
+#SMS XML Parser
+
 This tool is used to parse the xml files generated from SMS Backup apps. It is built using only javascript. 
 To use the tool, open the js file and update the xml path.
 
