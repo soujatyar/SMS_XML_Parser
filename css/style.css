@@ -5,9 +5,15 @@ html {
 }
 
 .messages__item {
-  /* background-color: #dfd087; */
   width: 100%;
-  display: block;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: red;
+  border-color: #005cbf;
 }
 
 .max-height {
@@ -31,14 +37,13 @@ html {
   width: 50%;
   height: 100%;
   text-align: left;
-  /* font: 400 0.9em "Open Sans", sans-serif; */
   border: 1px solid #97c6e3;
   border-radius: 10px;
 }
 
-/* .message-content {
-  overflow: hidden;
-} */
+.message-content {
+  word-wrap: break-word;
+}
 
 .message-orange {
   margin-left: calc(100% - 52%);
@@ -48,7 +53,6 @@ html {
   width: 50%;
   height: 100%;
   text-align: left;
-  /* font: 400 0.9em "Open Sans", sans-serif; */
   border: 1px solid #dfd087;
   border-radius: 10px;
 }
